@@ -12,16 +12,16 @@ var versionCmd = &cobra.Command{
 	Short: "show current version",
 	Long: "show current version",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("version called")
-		//fmt.Println("system mode:", viper.GetString("system_mode"))
+		fmt.Println("system mode:", viper.Get("mode"))
+		fmt.Println("author:", viper.Get("author"))
 
-		//fmt.Println("system mode:", rootCmd.Flags().Lookup("system-mode").Value)
+
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(versionCmd)
-	_ = viper.BindPFlag("SYSTEM_MODE", rootCmd.Flags().Lookup("system-mode"))
+
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

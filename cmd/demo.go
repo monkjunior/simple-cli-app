@@ -3,7 +3,6 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 // demoCmd represents the demo command
@@ -30,10 +29,4 @@ func init() {
 
 func runDemo(cmd *cobra.Command, args []string){
 	fmt.Println("Demo is running")
-	viper.BindEnv("ID")
-
-	// os.Setenv("ID", "2912")
-	// or you can set environment variable to env file
-	// which is specified in viper.SetConfigFile(cfgFile)
-	fmt.Println("Demo ID:", viper.Get("ID"))
 }

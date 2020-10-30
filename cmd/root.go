@@ -10,11 +10,13 @@ import (
 )
 
 var cfgFile string
+var mode string
 
 var rootCmd = &cobra.Command{
 	Use:   "simple-cli-app",
 	Short: "simple-cli-app",
 	Long: `A simple-cli-app is using for learning purpose.`,
+	TraverseChildren: true,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//	Run: func(cmd *cobra.Command, args []string) { },
@@ -37,7 +39,13 @@ func init() {
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.simple-cli-app.yaml)")
-	rootCmd.PersistentFlags().StringP("system-mode", "s" ,"dev", "config system-mode (default is develop)")
+	rootCmd.PersistentFlags().StringVar(&mode, "mode", "prod", "config system-mode")
+	rootCmd.PersistentFlags().StringP("author", "a", "vungocson", "name of author")
+	_  = viper.BindPFlag("mode", rootCmd.PersistentFlags().Lookup("mode"))
+	_  = viper.BindPFlag("author", rootCmd.PersistentFlags().Lookup("author"))
+
+
+
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
